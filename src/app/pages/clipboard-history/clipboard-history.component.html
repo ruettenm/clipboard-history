@@ -1,0 +1,12 @@
+<div class="list-group list-group-flush">
+    <a
+        *ngFor="let entry of clipboardHistroy | async; let i = index"
+        class="list-group-item list-group-item-action"
+        [ngClass]="{'active': i === selectedEntryIndex}"
+        (click)="selectEntry(entry)"
+        href="#"
+    >
+        <pre *ngIf="entry.text">{{ entry.text.value }}</pre>
+        <img *ngIf="entry.image" [src]="entry.image.value.toDataURL()" class="clipboard-image" />
+    </a>
+</div>

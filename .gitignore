@@ -1,0 +1,17 @@
+# compiled output
+dist/
+app-builds/
+main.js
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+.idea/
+*.iml
+
+npm-debug.log
+/typings
+
+# System Files
+.DS_Store
