@@ -1,8 +1,8 @@
 {
-    "name": "clipboard-histroy",
+    "name": "clipboard-history",
     "version": "0.1.0",
     "description": "Clipboard Histroy",
-    "homepage": "https://github.com/ruettenm/clipboard-histroy",
+    "homepage": "https://github.com/ruettenm/clipboard-history",
     "author": {
         "name": "Matthias Rütten",
         "email": "matthias.ruetten@codecentric.de"
@@ -14,7 +14,10 @@
         "typescript"
     ],
     "main": "main.js",
-    "private": true,
+    "private": false,
+    "build": {
+        "appId": "de.ruettenm.clipboard-history"
+    },
     "scripts": {
         "postinstall": "npx electron-builder install-app-deps",
         "ng": "ng",
@@ -57,7 +60,7 @@
         "cross-env": "5.0.5",
         "dotenv": "5.0.0",
         "electron": "1.8.2",
-        "electron-builder": "20.0.5",
+        "electron-builder": "20.4.1",
         "electron-reload": "1.2.2",
         "enhanced-resolve": "3.3.0",
         "fs-extra": "5.0.0",
