@@ -4,8 +4,8 @@
 [![Make a pull request](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/ruettenm/clipboard-history/pulls)
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE.md)
 
-[![Watch on GitHub](https://img.shields.io/github/watchers/maximegris/angular-electron.svg?style=social)](https://github.com/ruettenm/clipboard-history/watchers)
-[![Star on GitHub](https://img.shields.io/github/stars/maximegris/angular-electron.svg?style=social)](https://github.com/ruettenm/clipboard-history/stargazers)
+[![Watch on GitHub](https://img.shields.io/github/watchers/reuttenm/clipboard-history.svg?style=social)](https://github.com/ruettenm/clipboard-history/watchers)
+[![Star on GitHub](https://img.shields.io/github/stars/reuttenm/clipboard-history.svg?style=social)](https://github.com/ruettenm/clipboard-history/stargazers)
 
 # Introduction
 
