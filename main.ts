@@ -65,7 +65,7 @@ function createWindow() {
         skipTaskbar: true,
         show: true,
         title: 'Clipboard History',
-        icon: path.join(__dirname, 'assets', 'app_icon.png')
+        icon: path.join(__dirname, 'assets', 'icon-512.png')
     })
 
     globalShortcut.register('CmdOrCtrl+Shift+v', () => {
@@ -79,11 +79,11 @@ function createWindow() {
     })
 
     if (process.platform === 'darwin') {
-        tray = new Tray(path.join(__dirname, 'assets', 'iconTemplate.png'))
+        tray = new Tray(path.join(__dirname, 'assets', 'icon-black.png'))
     } else if (process.platform === 'linux') {
-        tray = new Tray(path.join(__dirname, 'assets', 'iconHighlight@2x.png'))
+        tray = new Tray(path.join(__dirname, 'assets', 'icon@2x.png'))
     } else {
-        tray = new Tray(path.join(__dirname, 'assets', 'iconHighlight.png'))
+        tray = new Tray(path.join(__dirname, 'assets', 'icon.png'))
     }
 
     const contextMenu = Menu.buildFromTemplate([
