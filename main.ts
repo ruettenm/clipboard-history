@@ -1,12 +1,12 @@
-import { BrowserWindow, Menu, Tray, app, screen, ipcMain, globalShortcut } from 'electron'
+import { BrowserWindow, Menu, Tray, app, ipcMain, globalShortcut } from 'electron'
 import * as path from 'path'
 import * as url from 'url'
 import { keyTap } from 'robotjs'
 
 const args = process.argv.slice(1)
 const serve = args.some(val => val === '--serve')
-let mainWindow
-let tray
+let mainWindow: BrowserWindow | null
+let tray: Tray
 
 try {
     require('dotenv').config()
@@ -19,7 +19,7 @@ function waitUntilWindowIsHidden() {
         let tries = 1
         const maxTries = 10
         const interval = setInterval(() => {
-            if (!mainWindow.isVisible() || tries > maxTries) {
+            if (mainWindow && !mainWindow.isVisible() || tries > maxTries) {
                 tries++
                 clearInterval(interval)
                 if (tries > maxTries) {
@@ -33,30 +33,29 @@ function waitUntilWindowIsHidden() {
 }
 
 function hideWindow(pasteClipboard = false) {
-    if (app.hide) {
-        // Linux and MacOS
-        app.hide()
-    } else {
-        // for Windows
-        mainWindow.blur()
-        mainWindow.hide()
-    }
+    if (mainWindow) {
+        if (app.hide) {
+            // Linux and MacOS
+            app.hide()
+        } else {
+            // for Windows
+            mainWindow.blur()
+            mainWindow.hide()
+        }
 
-    if (pasteClipboard) {
-        waitUntilWindowIsHidden()
-            .then(() => {
-                keyTap('v', 'command')
-            })
-            .catch(err => {
-                console.error(err)
-            })
+        if (pasteClipboard) {
+            waitUntilWindowIsHidden()
+                .then(() => {
+                    keyTap('v', 'command')
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+        }
     }
 }
 
 function createWindow() {
-    const electronScreen = screen
-    const size = electronScreen.getPrimaryDisplay().workAreaSize
-
     mainWindow = new BrowserWindow({
         frame: false,
         height: 800,
@@ -69,11 +68,13 @@ function createWindow() {
         icon: path.join(__dirname, 'assets', 'app_icon.png')
     })
 
-    globalShortcut.register('Cmd+Shift+v', () => {
-        if (mainWindow.isVisible()) {
-            hideWindow()
-        } else {
-            mainWindow.show()
+    globalShortcut.register('CmdOrCtrl+Shift+v', () => {
+        if (mainWindow) {
+            if (mainWindow.isVisible()) {
+                hideWindow()
+            } else {
+                mainWindow.show()
+            }
         }
     })
 
@@ -113,7 +114,7 @@ function createWindow() {
         mainWindow = null
     })
 
-    ipcMain.on('hideWindow', (_, pasteClipboard) => {
+    ipcMain.on('hideWindow', (_: Event, pasteClipboard: boolean) => {
         console.log(pasteClipboard)
         hideWindow(pasteClipboard)
     })
