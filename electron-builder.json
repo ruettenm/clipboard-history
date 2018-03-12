@@ -1,24 +1,8 @@
 {
-    "productName": "clipboard-histroy",
+    "appId": "de.ruettenm.clipboard-history",
+    "productName": "clipboard-history",
     "directories": {
         "output": "app-builds"
     },
-    "win": {
-        "icon": "dist",
-        "target": [
-            "portable"
-        ]
-    },
-    "mac": {
-        "icon": "dist",
-        "target": [
-            "dmg"
-        ]
-    },
-    "linux": {
-        "icon": "dist",
-        "target": [
-            "AppImage"
-        ]
-    }
+    "publish": [ "github" ]
 }
