@@ -6,7 +6,7 @@
     "apps": [
         {
             "root": "src",
-            "outDir": "dist",
+            "outDir": "www",
             "assets": [
                 "assets",
                 "favicon.ico",
@@ -14,7 +14,7 @@
                 "favicon.256x256.png"
             ],
             "index": "index.html",
-            "main": "main.ts",
+            "main": "index.ts",
             "polyfills": "polyfills.ts",
             "test": "test.ts",
             "tsconfig": "tsconfig.app.json",
