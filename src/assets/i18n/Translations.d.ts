@@ -1,0 +1,3 @@
+interface Translations {
+    TITLE: string
+}

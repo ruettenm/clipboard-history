@@ -46,7 +46,11 @@ function hideWindow(pasteClipboard = false) {
         if (pasteClipboard) {
             waitUntilWindowIsHidden()
                 .then(() => {
-                    keyTap('v', 'command')
+                    if (process.platform === 'darwin') {
+                        keyTap('v', 'command')
+                    } else {
+                        keyTap('v', 'control')
+                    }
                 })
                 .catch(err => {
                     console.error(err)
@@ -79,14 +83,22 @@ function createWindow() {
     })
 
     if (process.platform === 'darwin') {
-        tray = new Tray(path.join(__dirname, 'assets', 'icon-black.png'))
+        tray = new Tray(path.join(__dirname, 'assets/images', 'icon-mac@2x.png'))
     } else if (process.platform === 'linux') {
-        tray = new Tray(path.join(__dirname, 'assets', 'icon@2x.png'))
+        tray = new Tray(path.join(__dirname, 'assets/images', 'icon@2x.png'))
     } else {
-        tray = new Tray(path.join(__dirname, 'assets', 'icon.png'))
+        tray = new Tray(path.join(__dirname, 'assets/images', 'icon.png'))
     }
 
     const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Open',
+            click: () => {
+                if (mainWindow) {
+                    mainWindow.show()
+                }
+            }
+        },
         {
             label: 'Quit',
             click: () => {
@@ -104,7 +116,7 @@ function createWindow() {
         mainWindow.webContents.openDevTools()
     } else {
         mainWindow.loadURL(url.format({
-            pathname: path.join(__dirname, 'dist/index.html'),
+            pathname: path.join(__dirname, 'www/index.html'),
             protocol: 'file:',
             slashes: true
         }))
