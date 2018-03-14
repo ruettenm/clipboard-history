@@ -1,3 +1,4 @@
 export const de: Translations = {
-    TITLE: 'Clipboard History'
+    TITLE: 'Clipboard History',
+    CLOSE: 'Schließen'
 }

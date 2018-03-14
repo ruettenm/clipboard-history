@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title">Usage</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p>
+        I have borrowed a lot from CopyClip. Right now you can open it using Alt+Space keyboard shortcut.
+        Use left/right keys to navigate through the history, up/down keys to highlight a specific item and enter key to select it.
+        Type in the search field to look for specific items in the clipboard history.
+        You can delete items using Cmd+Backspace (Ctrl+Backspace) keyboard shortcut.
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'CLOSE' | translate }}</button>
+</div>

@@ -3,13 +3,11 @@ import { List } from 'immutable'
 import { Observable } from 'rxjs/Observable'
 
 import { ClipboardEntry, ClipboardService } from '../../services/clipboard.service'
-import { ElectronService } from '../../services/electron.service'
 
 enum KEY_CODE {
     UP_ARROW = 38,
     DOWN_ARROW = 40,
-    ENTER = 13,
-    ESCAPE = 27
+    ENTER = 13
 }
 
 @Component({
@@ -23,7 +21,7 @@ export class ClipboardHistoryComponent {
 
     public selectedEntryIndex = 0
 
-    constructor(private clipboardService: ClipboardService, private electronService: ElectronService) {
+    constructor(private clipboardService: ClipboardService) {
         this.clipboardHistroy = clipboardService.history
     }
 
@@ -35,8 +33,6 @@ export class ClipboardHistoryComponent {
             this.keyArrowDown()
         } else if (event.keyCode === KEY_CODE.ENTER) {
             this.keyEnter()
-        } else if (event.keyCode === KEY_CODE.ESCAPE) {
-            this.keyEscape()
         }
     }
 
@@ -59,10 +55,6 @@ export class ClipboardHistoryComponent {
     private keyEnter() {
         this.clipboardService.pasteToClipboardByIndex(this.selectedEntryIndex)
         this.selectedEntryIndex = 0
-    }
-
-    private keyEscape() {
-        this.electronService.hideWindow()
     }
 
     public selectEntry(entry: ClipboardEntry) {
