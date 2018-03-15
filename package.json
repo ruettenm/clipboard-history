@@ -34,6 +34,7 @@
         "e2e": "npm-run-all -p pree2e:build pree2e:protractor"
     },
     "dependencies": {
+        "@types/electron-settings": "^3.1.1",
         "robotjs": "^0.5.1"
     },
     "devDependencies": {
@@ -63,6 +64,7 @@
         "electron": "1.8.2",
         "electron-builder": "20.4.1",
         "electron-reload": "1.2.2",
+        "electron-settings": "^3.1.4",
         "enhanced-resolve": "3.3.0",
         "fs-extra": "5.0.0",
         "immutable": "^3.8.2",

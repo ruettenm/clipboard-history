@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core'
-
 import { ipcRenderer } from 'electron'
-import * as childProcess from 'child_process'
 
 import { Environment } from '../common/Environment'
+import { ClipboardHistorySettings } from './settings.service'
 
 @Injectable()
 export class ElectronService {
-    ipcRenderer: typeof ipcRenderer
-    childProcess: typeof childProcess
+    private ipcRenderer: typeof ipcRenderer
 
     constructor() {
         if (Environment.isElectron()) {
             this.ipcRenderer = window.require('electron').ipcRenderer
-            this.childProcess = window.require('child_process')
         }
     }
 
     public hideWindow(pasteClipboard = false) {
         this.ipcRenderer.send('hideWindow', pasteClipboard)
+    }
+
+    public getSettings(): ClipboardHistorySettings {
+        return this.ipcRenderer.sendSync('getSettings')
+    }
+
+    public setSettings(settings: ClipboardHistorySettings) {
+        this.ipcRenderer.send('setSettings', settings)
     }
 }

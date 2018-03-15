@@ -26,7 +26,7 @@ export class ClipboardHistoryComponent {
     }
 
     @HostListener('window:keyup', [ '$event' ])
-    keyEvent(event: KeyboardEvent) {
+    public keyEvent(event: KeyboardEvent) {
         if (event.keyCode === KEY_CODE.UP_ARROW) {
             this.keyArrowUp()
         } else if (event.keyCode === KEY_CODE.DOWN_ARROW) {

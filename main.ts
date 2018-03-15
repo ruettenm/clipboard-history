@@ -1,7 +1,9 @@
 import { BrowserWindow, Menu, Tray, app, ipcMain, globalShortcut } from 'electron'
 import * as path from 'path'
 import * as url from 'url'
+import * as settings from 'electron-settings'
 import { keyTap } from 'robotjs'
+import Event = Electron.Event
 
 const args = process.argv.slice(1)
 const serve = args.some(val => val === '--serve')
@@ -127,8 +129,15 @@ function createWindow() {
     })
 
     ipcMain.on('hideWindow', (_: Event, pasteClipboard: boolean) => {
-        console.log(pasteClipboard)
         hideWindow(pasteClipboard)
+    })
+
+    ipcMain.on('getSettings', (event: Event) => {
+        event.returnValue = settings.get('settings') || false
+    })
+
+    ipcMain.on('setSettings', (_: Event, value: any) => {
+        settings.set('settings', value)
     })
 }
 

@@ -1,10 +1,9 @@
 import { Component, HostListener } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 
-import { Environment } from './common/Environment'
 import { ModalService } from './services/modal.service'
 import { ElectronService } from './services/electron.service'
-import { SettingsService } from './services/settings.service'
+import { ClipboardHistorySettings, SettingsService } from './services/settings.service'
 
 enum KEY_CODE {
     ESCAPE = 27
@@ -16,25 +15,24 @@ enum KEY_CODE {
     styleUrls: [ 'app.component.scss' ]
 })
 export class AppComponent {
+    private closeAppWithEsc: boolean
+
     constructor(
         translate: TranslateService,
         private modalService: ModalService,
         private electronService: ElectronService,
         settingsService: SettingsService) {
 
-        console.log(settingsService.settings)
         translate.setDefaultLang('en')
-
-        if (Environment.isElectron()) {
-            console.log('Mode electron')
-        } else {
-            console.log('Mode web')
-        }
+        settingsService.settings.subscribe((settings: ClipboardHistorySettings) => {
+            translate.use(settings.language)
+            this.closeAppWithEsc = settings.closeAppWithEsc
+        })
     }
 
     @HostListener('window:keyup', [ '$event' ])
-    keyEvent(event: KeyboardEvent) {
-        if (event.keyCode === KEY_CODE.ESCAPE) {
+    public keyEvent(event: KeyboardEvent) {
+        if (this.closeAppWithEsc && event.keyCode === KEY_CODE.ESCAPE) {
             this.electronService.hideWindow()
         }
     }

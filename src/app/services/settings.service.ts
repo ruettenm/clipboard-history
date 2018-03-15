@@ -1,60 +1,52 @@
 import { Injectable } from '@angular/core'
-import { app } from 'electron'
+import { Observable } from 'rxjs/Observable'
+import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+
+import { ElectronService } from './electron.service'
 
 export interface ClipboardHistorySettings {
-    shortcuts: {
-        global?: string
-        closeApp?: number
-    }
-    appearance: {
-        theme: 'dark' | 'light'
-        language: 'de' | 'en'
-        showTray: boolean
-    }
-    general: {
-        pasteClipboard: boolean
-        startOnLogin: boolean
-        detectImages: boolean
-    }
+    shortcut: string
+    theme: 'dark' | 'light'
+    language: 'de' | 'en'
+    showTray: boolean
+    closeAppWithEsc: boolean
+    pasteClipboard: boolean
+    startOnLogin: boolean
+    detectImages: boolean
 }
 
 const DEFAULT_SETTINGS: ClipboardHistorySettings = {
-    shortcuts: {
-        global: 'CmdOrCtrl+Shift+v',
-        closeApp: 27
-    },
-    appearance: {
-        theme: 'light',
-        language: 'en',
-        showTray: true
-    },
-    general: {
-        pasteClipboard: true,
-        startOnLogin: true,
-        detectImages: true
-    }
+    shortcut: 'CmdOrCtrl+Shift+v',
+    theme: 'light',
+    language: 'de',
+    showTray: true,
+    closeAppWithEsc: true,
+    pasteClipboard: true,
+    startOnLogin: true,
+    detectImages: true
 }
 
 @Injectable()
 export class SettingsService {
-    private _settings: ClipboardHistorySettings = DEFAULT_SETTINGS
+    private _settings: BehaviorSubject<ClipboardHistorySettings> = new BehaviorSubject(Object.freeze(DEFAULT_SETTINGS))
 
-    constructor() {
-        if (app.isReady()) {
-            console.log('APP IS READY')
-            // if (settings.has('settings')) {
-            //     this._settings = settings.get('settings') as any
-            // }
-        } else {
-            console.log('APP IS _NOT_ READY')
+    public readonly settings: Observable<ClipboardHistorySettings> = this._settings.asObservable()
+
+    constructor(private electronService: ElectronService) {
+        const settings = electronService.getSettings()
+        if (settings) {
+            this._settings.next(Object.assign({}, settings))
         }
     }
 
-    public get settings(): ClipboardHistorySettings {
-        return this._settings
+    public restoreDefaults() {
+        this.saveSettings(DEFAULT_SETTINGS)
     }
 
-    public set settings(settings: ClipboardHistorySettings) {
-        this._settings = settings
+    public saveSettings(settings: ClipboardHistorySettings) {
+        const immutableSettings = Object.assign({}, settings)
+
+        this._settings.next(immutableSettings)
+        this.electronService.setSettings(immutableSettings)
     }
 }
