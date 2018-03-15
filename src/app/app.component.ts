@@ -26,7 +26,7 @@ export class AppComponent {
         translate.setDefaultLang('en')
         settingsService.settings.subscribe((settings: ClipboardHistorySettings) => {
             translate.use(settings.language)
-            this.closeAppWithEsc = settings.closeAppWithEsc
+            this.closeAppWithEsc = settings.hideAppWithEsc
         })
     }
 

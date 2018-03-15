@@ -9,7 +9,7 @@ export interface ClipboardHistorySettings {
     theme: 'dark' | 'light'
     language: 'de' | 'en'
     showTray: boolean
-    closeAppWithEsc: boolean
+    hideAppWithEsc: boolean
     pasteClipboard: boolean
     startOnLogin: boolean
     detectImages: boolean
@@ -20,7 +20,7 @@ const DEFAULT_SETTINGS: ClipboardHistorySettings = {
     theme: 'light',
     language: 'de',
     showTray: true,
-    closeAppWithEsc: true,
+    hideAppWithEsc: true,
     pasteClipboard: true,
     startOnLogin: true,
     detectImages: true

@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Settings</h4>
+    <h4 class="modal-title">{{ 'SETTINGS.TITLE' | translate }}</h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -7,15 +7,15 @@
 <div class="modal-body">
     <div class="row">
         <div class="col">
-            <h5>Global Shortcut</h5>
+            <h5>{{ 'SETTINGS.GLOBAL_SHORTCUT' | translate }}</h5>
         </div>
     </div>
     <div class="form-group row">
         <label class="col-6 col-form-label col-form-label-sm" for="inputShortcutGlobal">
-            Open the app with
+            {{ 'SETTINGS.GLOBAL_SHORTCUT_INFO' | translate }}
         </label>
         <div class="col-5">
-            <input class="form-control form-control-sm" id="inputShortcutGlobal" placeholder="no shortcut set" [(ngModel)]="formValues.shortcut">
+            <input class="form-control form-control-sm" id="inputShortcutGlobal" [placeholder]="'SETTINGS.GLOBAL_SHORTCUT_NOT_SET' | translate" [(ngModel)]="formValues.shortcut">
         </div>
         <div class="col-1 col-form-label col-form-label-sm">
             <a href="https://electronjs.org/docs/api/accelerator" target="_blank">?</a>
@@ -25,24 +25,24 @@
     <hr />
     <div class="row">
         <div class="col">
-            <h5>Appearance</h5>
+            <h5>{{ 'SETTINGS.APPEARANCE.TITLE' | translate }}</h5>
         </div>
     </div>
     <div class="form-group row">
-        <label for="inputLanguage" class="col-6 col-form-label col-form-label-sm">Language</label>
+        <label for="inputLanguage" class="col-6 col-form-label col-form-label-sm">{{ 'SETTINGS.APPEARANCE.LANGUAGE' | translate }}</label>
         <div class="col-6">
             <select id="inputLanguage" class="form-control form-control-sm" [(ngModel)]="formValues.language">
-                <option value="en">English</option>
-                <option value="de">German</option>
+                <option value="en">{{ 'SETTINGS.APPEARANCE.LANGUAGES.ENGLISH' | translate }}</option>
+                <option value="de">{{ 'SETTINGS.APPEARANCE.LANGUAGES.GERMAN' | translate }}</option>
             </select>
         </div>
     </div>
     <div class="form-group row">
-        <label for="inputTheme" class="col-6 col-form-label col-form-label-sm">Theme</label>
+        <label for="inputTheme" class="col-6 col-form-label col-form-label-sm">{{ 'SETTINGS.APPEARANCE.THEME' | translate }}</label>
         <div class="col-6">
             <select id="inputTheme" class="form-control form-control-sm" [(ngModel)]="formValues.theme">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
+                <option value="light">{{ 'SETTINGS.APPEARANCE.THEMES.LIGHT' | translate }}</option>
+                <option value="dark">{{ 'SETTINGS.APPEARANCE.THEMES.DARK' | translate }}</option>
             </select>
         </div>
     </div>
@@ -51,7 +51,7 @@
             <div class="form-check col-form-label-sm">
                 <input class="form-check-input" type="checkbox" id="inputShowSystemTray" [(ngModel)]="formValues.showTray">
                 <label class="form-check-label" for="inputShowSystemTray">
-                    Show System Tray
+                    {{ 'SETTINGS.APPEARANCE.SHOW_TRAY' | translate }}
                 </label>
             </div>
         </div>
@@ -60,15 +60,15 @@
     <hr />
     <div class="row">
         <div class="col">
-            <h5>General</h5>
+            <h5>{{ 'SETTINGS.GENERAL.TITLE' | translate }}</h5>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <div class="form-check col-form-label-sm">
-                <input class="form-check-input" type="checkbox" id="inputCloseAppWithEsc" [(ngModel)]="formValues.closeAppWithEsc">
+                <input class="form-check-input" type="checkbox" id="inputCloseAppWithEsc" [(ngModel)]="formValues.hideAppWithEsc">
                 <label class="form-check-label" for="inputCloseAppWithEsc">
-                    Hide the app with ESC
+                    {{ 'SETTINGS.GENERAL.HIDE_APP_WITH_ESC' | translate }}
                 </label>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="form-check col-form-label-sm">
                 <input class="form-check-input" type="checkbox" id="inputAutomaticPaste" [(ngModel)]="formValues.pasteClipboard">
                 <label class="form-check-label" for="inputAutomaticPaste">
-                    Automatic paste after selection
+                    {{ 'SETTINGS.GENERAL.PASTE_CLIPBOARD' | translate }}
                 </label>
             </div>
         </div>
@@ -88,7 +88,7 @@
             <div class="form-check col-form-label-sm">
                 <input class="form-check-input" type="checkbox" id="inputStartOnLogin" [(ngModel)]="formValues.startOnLogin">
                 <label class="form-check-label" for="inputStartOnLogin">
-                    Start on login
+                    {{ 'SETTINGS.GENERAL.START_ON_LOGIN' | translate }}
                 </label>
             </div>
         </div>
@@ -98,14 +98,14 @@
             <div class="form-check col-form-label-sm">
                 <input class="form-check-input" type="checkbox" id="inputDetectImages" [(ngModel)]="formValues.detectImages">
                 <label class="form-check-label" for="inputDetectImages">
-                    Detect Images in clipboard
+                    {{ 'SETTINGS.GENERAL.DETECT_IMAGES' | translate }}
                 </label>
             </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-danger" (click)="restoreDefaults()">Restore defaults</button>
-    <button type="button" class="btn btn-outline-success" (click)="applyChanges()">Apply changes</button>
-    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Close</button>
+    <button type="button" class="btn btn-outline-danger" (click)="restoreDefaults()">{{ 'SETTINGS.RESTORE_DEFAULTS' | translate }}</button>
+    <button type="button" class="btn btn-outline-success" (click)="applyChanges()">{{ 'SETTINGS.APPLY_CHANGES' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">{{ 'CLOSE' | translate }}</button>
 </div>
