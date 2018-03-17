@@ -1,6 +1,12 @@
 interface Translations {
     TITLE: string
     CLOSE: string
+    HELP: {
+        TITLE: string
+        USAGE: string
+        MISSING_FEATURES: string
+        MISSING_FEATURES_DESCRIPTION: string
+    }
     SETTINGS: {
         TITLE: string
         GLOBAL_SHORTCUT: string

@@ -1,17 +1,19 @@
 <div class="modal-header">
-    <h4 class="modal-title">Usage</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <h4 class="modal-title">{{ 'HELP.TITLE' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
+    <h5>{{ 'HELP.USAGE' | translate }}</h5>
     <p>
         I have borrowed a lot from CopyClip. Right now you can open it using Alt+Space keyboard shortcut.
-        Use left/right keys to navigate through the history, up/down keys to highlight a specific item and enter key to select it.
-        Type in the search field to look for specific items in the clipboard history.
-        You can delete items using Cmd+Backspace (Ctrl+Backspace) keyboard shortcut.
+        Use up/down keys to highlight a specific item and enter key to select it.
     </p>
+
+    <h5>{{ 'HELP.MISSING_FEATURES' | translate }}</h5>
+    <p>{{ 'HELP.MISSING_FEATURES_DESCRIPTION' | translate }} <a href="#" (click)="electronService.openExternalLink('https://github.com/ruettenm/clipboard-history/issues/new')">GitHub Issue</a>.</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">{{ 'CLOSE' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="closeModal()">{{ 'CLOSE' | translate }}</button>
 </div>

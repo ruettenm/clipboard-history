@@ -1,6 +1,12 @@
 export const de: Translations = {
     TITLE: 'Clipboard History',
     CLOSE: 'Schließen',
+    HELP: {
+        TITLE: 'Hilfe',
+        USAGE: 'Nutzung',
+        MISSING_FEATURES: 'Ihr vermisst ein Feature?',
+        MISSING_FEATURES_DESCRIPTION: 'Dann meldet euch gerne und erstellt ein'
+    },
     SETTINGS: {
         TITLE: 'Einstellungen',
         GLOBAL_SHORTCUT: 'Globales Tastenkürzel',
