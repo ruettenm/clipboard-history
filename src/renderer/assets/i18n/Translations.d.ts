@@ -28,6 +28,7 @@ interface Translations {
         }
         GENERAL: {
             TITLE: string
+            MAX_ENTRIES: string
             HIDE_APP_WITH_ESC: string
             PASTE_CLIPBOARD: string
             START_ON_LOGIN: string

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
-import { ClipboardHistorySettings, SettingsService } from '../../services/settings.service'
+import { SettingsService } from '../../services/settings.service'
+import { ClipboardHistorySettings } from '../../../../shared/settings'
 
 @Component({
     selector: 'app-settings-modal-content',

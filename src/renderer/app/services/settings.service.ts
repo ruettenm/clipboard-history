@@ -3,28 +3,7 @@ import { Observable } from 'rxjs/Observable'
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 import { ElectronService } from './electron.service'
-
-export interface ClipboardHistorySettings {
-    shortcut: string
-    theme: 'dark' | 'light'
-    language: 'de' | 'en'
-    showTray: boolean
-    hideAppWithEsc: boolean
-    pasteClipboard: boolean
-    startOnLogin: boolean
-    detectImages: boolean
-}
-
-const DEFAULT_SETTINGS: ClipboardHistorySettings = {
-    shortcut: 'CmdOrCtrl+Shift+v',
-    theme: 'light',
-    language: 'de',
-    showTray: true,
-    hideAppWithEsc: true,
-    pasteClipboard: true,
-    startOnLogin: true,
-    detectImages: true
-}
+import { ClipboardHistorySettings, DEFAULT_SETTINGS } from '../../../shared/settings'
 
 @Injectable()
 export class SettingsService {

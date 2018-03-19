@@ -6,11 +6,12 @@ import { List } from 'immutable'
 
 import { Environment } from '../common/Environment'
 import { ElectronService } from './electron.service'
+import { SettingsService } from './settings.service'
+import { ClipboardHistorySettings } from '../../../shared/settings'
 
 const POLL_INTERVAL_IN_MS = 1000
 
 export interface ClipboardEntry {
-    id: string
     text?: {
         value: string
     }
@@ -22,10 +23,10 @@ export interface ClipboardEntry {
 @Injectable()
 export class ClipboardService {
     private clipboard: typeof clipboard
-
-    private lastClipboardEntry: ClipboardEntry = { id: 'initial-entry' }
-
+    private lastClipboardEntry: ClipboardEntry = { }
     private _history: BehaviorSubject<List<ClipboardEntry>> = new BehaviorSubject(List([]))
+    private maxEntries: number
+    private detectImages: boolean
 
     public readonly history: Observable<List<ClipboardEntry>> = this._history.asObservable()
 
@@ -33,10 +34,15 @@ export class ClipboardService {
         return this._history.getValue().size
     }
 
-    constructor(private electronService: ElectronService) {
+    constructor(private electronService: ElectronService, settingsService: SettingsService) {
         if (Environment.isElectron()) {
             this.clipboard = window.require('electron').clipboard
         }
+
+        settingsService.settings.subscribe((settings: ClipboardHistorySettings) => {
+            this.maxEntries = settings.maxEntries
+            this.detectImages = settings.detectImages
+        })
 
         this.pollForChanges()
     }
@@ -64,14 +70,12 @@ export class ClipboardService {
 
             if (this.isNewTextEntry(clipboardText)) {
                 this.insertEntry({
-                    id: '1234',
                     text: {
                         value: clipboardText
                     }
                 })
-            } else if (this.isNewImageEntry(clipboardImage)) {
+            } else if (this.detectImages && this.isNewImageEntry(clipboardImage)) {
                 this.insertEntry({
-                    id: '1234',
                     image: {
                         value: clipboardImage
                     }
@@ -110,9 +114,11 @@ export class ClipboardService {
 
     private insertEntry(entry: ClipboardEntry) {
         this.lastClipboardEntry = entry
-        this._history.next(this._history.getValue().insert(0, entry))
 
-        console.log('inserted entry', entry)
+        const currentList = this._history.getValue()
+        const maxLength = this.maxEntries - 1
+        const shortenedList = currentList.size > maxLength ? currentList.setSize(maxLength) : currentList
+        this._history.next(shortenedList.insert(0, entry))
     }
 
     private pasteTextToClipboard(value: string) {

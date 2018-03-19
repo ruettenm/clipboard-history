@@ -3,7 +3,8 @@ import { TranslateService } from '@ngx-translate/core'
 
 import { ModalService } from './services/modal.service'
 import { ElectronService } from './services/electron.service'
-import { ClipboardHistorySettings, SettingsService } from './services/settings.service'
+import { SettingsService } from './services/settings.service'
+import { ClipboardHistorySettings } from '../../shared/settings'
 
 enum KEY_CODE {
     ESCAPE = 27

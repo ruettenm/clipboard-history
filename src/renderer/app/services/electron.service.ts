@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { ipcRenderer, shell } from 'electron'
 
 import { Environment } from '../common/Environment'
-import { ClipboardHistorySettings } from './settings.service'
+import { ClipboardHistorySettings } from '../../../shared/settings'
 
 @Injectable()
 export class ElectronService {

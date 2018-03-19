@@ -28,6 +28,7 @@ export const en: Translations = {
         },
         GENERAL: {
             TITLE: 'General',
+            MAX_ENTRIES: 'Maximum Entries',
             HIDE_APP_WITH_ESC: 'Hide the app with ESC',
             PASTE_CLIPBOARD: 'Automatic paste after selection',
             START_ON_LOGIN: 'Start on login',
