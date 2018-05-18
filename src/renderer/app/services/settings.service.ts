@@ -13,6 +13,7 @@ export class SettingsService {
 
     constructor(private electronService: ElectronService) {
         const settings = electronService.getSettings()
+
         if (settings) {
             this._settings.next(Object.assign({}, settings))
         }
