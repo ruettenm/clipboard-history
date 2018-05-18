@@ -21,7 +21,8 @@
             "testTsconfig": "tsconfig.spec.json",
             "prefix": "app",
             "styles": [
-                "styles.scss"
+                "styles.scss",
+                "../node_modules/octicons/build/build.css"
             ],
             "scripts": [],
             "environmentSource": "environments/environment.ts",

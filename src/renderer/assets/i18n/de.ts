@@ -29,8 +29,8 @@ export const de: Translations = {
         GENERAL: {
             TITLE: 'General',
             MAX_ENTRIES: 'Anzahl der Einträge',
-            HIDE_APP_WITH_ESC: 'Blende App mit ESC aus',
-            PASTE_CLIPBOARD: 'Füge Auswahl automatisch ein',
+            HIDE_APP_WITH_ESC: 'App mit ESC ausblenden',
+            PASTE_CLIPBOARD: 'Auswahl automatisch einfügen',
             START_ON_LOGIN: 'Start Beim Anmelden',
             DETECT_IMAGES: 'Prüfe Zwischenablage auf Bilder'
         },

@@ -15,6 +15,7 @@ import { SettingsService } from './services/settings.service'
 import { ModalService } from './services/modal.service'
 
 import { WebviewDirective } from './directives/webview.directive'
+import { OcticonDirective } from './directives/octicon.directive'
 import { CustomTranslateLoader } from './common/CustomTranslateLoader'
 
 import { AppComponent } from './app.component'
@@ -28,7 +29,8 @@ import { SettingsModalContentComponent } from './components/modal/settings-modal
         ClipboardHistoryComponent,
         HelpModalContentComponent,
         SettingsModalContentComponent,
-        WebviewDirective
+        WebviewDirective,
+        OcticonDirective
     ],
     imports: [
         BrowserModule,
