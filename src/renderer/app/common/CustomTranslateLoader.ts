@@ -1,8 +1,9 @@
-import { en } from '../../assets/i18n/en'
-import { de } from '../../assets/i18n/de'
 import { TranslateLoader } from '@ngx-translate/core'
 import { Observable } from 'rxjs/Observable'
 import { Observer } from 'rxjs/Observer'
+
+import { en } from '../../assets/i18n/en'
+import { de } from '../../assets/i18n/de'
 
 export class CustomTranslateLoader implements TranslateLoader {
     public getTranslation(lang: string): Observable<any> {
